@@ -7,18 +7,22 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pageObjects.*;
+import pageObjects.subPageObjects.AddressPageObject;
 import pageObjects.subPageObjects.CustomerInfoPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.subPageObjects.OrderPageObject;
+import pageObjects.subPageObjects.RewardPointPageObject;
 
-public class Level04_Multiple_Browser extends BaseTest {
+public class Level08_Page_Navigation extends BaseTest {
     //Declare variables
     private WebDriver driver;
     private HomePageObject homePage;
     private RegisterPageObject registerPage;
     private LoginPageObject loginPage;
     private CustomerInfoPageObject customerInfoPage;
+    private AddressPageObject addressPage;
+    private OrderPageObject orderPage;
+    private RewardPointPageObject rewardPointPage;
     String firstName, lastName, emailAddress, companyName, password;
 
     //Pre-condition
@@ -27,7 +31,7 @@ public class Level04_Multiple_Browser extends BaseTest {
     public void beforeClass(String browserName) {
         driver = getBrowserDriver(browserName);
         //No duoc sinh ra và lam action cua page do
-        homePage = new HomePageObject(driver);
+        homePage = PageGenerator.getHomePage(driver);
         firstName = "John";
         lastName = "Conor";
         emailAddress = firstName + generateRandomNumb() + "@gmail.com";
@@ -39,11 +43,8 @@ public class Level04_Multiple_Browser extends BaseTest {
     //Testcases
     @Test
     public void User_01_Register() {
-//        Action01
-        homePage.openRegisterPage();
-//        Tu homePage qua registerPage
-//        Page do duoc sinh ra de lam action cua page do
-        registerPage = new RegisterPageObject(driver);
+        //Khong co su ket noi
+        registerPage = PageGenerator.getHomePage(driver).openRegisterPage();
         registerPage.clickToMaleRadio();
         registerPage.enterToFirstNameTextBox(firstName);
         registerPage.enterToLastNameTextBox(lastName);
@@ -61,26 +62,24 @@ public class Level04_Multiple_Browser extends BaseTest {
 
     @Test
     public void User_02_Login() {
-        homePage.openLoginPage();
+
 //        Tu registerPage qua loginPage
 //        Page do duoc sinh ra de lam action cua page do
-        loginPage = new LoginPageObject(driver);
+        loginPage = PageGenerator.getHomePage(driver).openLoginPage();
         loginPage.enterToEmailTextBox(emailAddress);
         loginPage.enterToPasswordTextBox(password);
-        loginPage.clickToLoginButton();
 //        Tu loginPage qua homePage
 //        Page do duoc sinh ra de lam action cua page do
-        homePage = new HomePageObject(driver);
+        homePage = PageGenerator.getLoginPage(driver).clickToLoginButton();
         Assert.assertTrue(homePage.isMyaccountLinkDisplayed());
 
     }
 
     @Test
     public void User_03_Myaccount() {
-        homePage.openCustomerInfoPage();
+        customerInfoPage = PageGenerator.getHomePage(driver).openCustomerInfoPage();
 //        Tu homePage qua customerInfoPage
 //        Page do duoc sinh ra de lam action cua page do
-        customerInfoPage = new CustomerInfoPageObject(driver);
         Assert.assertTrue(customerInfoPage.isMaleGenderSelected());
         Assert.assertEquals(customerInfoPage.getFirstNameTextboxValue(), firstName);
         Assert.assertEquals(customerInfoPage.getLastNameTextboxValue(), lastName);
@@ -89,6 +88,23 @@ public class Level04_Multiple_Browser extends BaseTest {
 //        Assert.assertEquals(customerInfoPage.getYearDropdownSelectedValue(), "");
         Assert.assertEquals(customerInfoPage.getEmailTextboxValue(), emailAddress);
         Assert.assertEquals(customerInfoPage.getCompanyTextboxValue(), companyName);
+
+    }
+
+    @Test
+    public void User_04_Switch_Page() {
+        //CustomerInfo -> Address
+        addressPage = customerInfoPage.openAddressPage(driver);
+        //Address -> RewardPoint
+        rewardPointPage = addressPage.openRewardPointPage(driver);
+        //RewardPoint -> Order
+        orderPage = rewardPointPage.openOrderPage(driver);
+        //Order -> Address
+        addressPage = orderPage.openAddressPage(driver);
+        //Address -> CustomerInfo
+        customerInfoPage = addressPage.openCustomerInfoPage(driver);
+        orderPage = customerInfoPage.openOrderPage(driver);
+        addressPage = rewardPointPage.openAddressPage(driver);
 
     }
 

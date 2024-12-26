@@ -2,6 +2,7 @@ package pageObjects;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageObjects.subPageObjects.CustomerInfoPageObject;
 import pageUIs.HomePageUI;
 
 public class HomePageObject extends BasePage {

@@ -1,6 +1,10 @@
 package pageObjects;
 
 import org.openqa.selenium.WebDriver;
+import pageObjects.subPageObjects.AddressPageObject;
+import pageObjects.subPageObjects.CustomerInfoPageObject;
+import pageObjects.subPageObjects.OrderPageObject;
+import pageObjects.subPageObjects.RewardPointPageObject;
 
 public class PageGenerator {
     public static HomePageObject getHomePage(WebDriver driver) {

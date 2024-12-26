@@ -8,6 +8,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.*;
+import pageObjects.subPageObjects.AddressPageObject;
+import pageObjects.subPageObjects.CustomerInfoPageObject;
+import pageObjects.subPageObjects.OrderPageObject;
+import pageObjects.subPageObjects.RewardPointPageObject;
 
 public class Level07_Switch_Page_Object extends BaseTest {
     //Declare variables

@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.*;
+import pageObjects.subPageObjects.CustomerInfoPageObject;
 
 public class Level06_Page_Generator_03 extends BaseTest {
     //Declare variables
