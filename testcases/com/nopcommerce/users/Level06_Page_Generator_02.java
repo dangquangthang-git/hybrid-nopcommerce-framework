@@ -7,18 +7,18 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.subPageObjects.CustomerInfoPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.nopCommerce.users.UserCustomerInfoPO;
+import pageObjects.nopCommerce.users.UserHomePO;
+import pageObjects.nopCommerce.users.UserLoginPageObject;
+import pageObjects.nopCommerce.users.UserRegisterPO;
 
 public class Level06_Page_Generator_02 extends BaseTest {
     //Declare variables
     private WebDriver driver;
-    private HomePageObject homePage;
-    private RegisterPageObject registerPage;
-    private LoginPageObject loginPage;
-    private CustomerInfoPageObject customerInfoPage;
+    private UserHomePO homePage;
+    private UserRegisterPO registerPage;
+    private UserLoginPageObject loginPage;
+    private UserCustomerInfoPO customerInfoPage;
     String firstName, lastName, emailAddress, companyName, password;
 
     //Pre-condition
@@ -27,7 +27,7 @@ public class Level06_Page_Generator_02 extends BaseTest {
     public void beforeClass(String browserName) {
         driver = getBrowserDriver(browserName);
         //No duoc sinh ra và lam action cua page do
-        homePage = new HomePageObject(driver);
+        homePage = new UserHomePO(driver);
         firstName = "John";
         lastName = "Conor";
         emailAddress = firstName + generateRandomNumb() + "@gmail.com";
@@ -53,7 +53,7 @@ public class Level06_Page_Generator_02 extends BaseTest {
         registerPage.enterToConfirmPasswordTextBox(password);
         registerPage.clickToRegisterButton();
         Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
-        registerPage.clickToLogoutButton();
+        registerPage.clickToLogoutLink();
     }
 
     @Test

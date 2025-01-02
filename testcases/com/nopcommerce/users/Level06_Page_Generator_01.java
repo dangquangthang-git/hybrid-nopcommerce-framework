@@ -7,18 +7,18 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.subPageObjects.CustomerInfoPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.nopCommerce.users.UserCustomerInfoPO;
+import pageObjects.nopCommerce.users.UserHomePO;
+import pageObjects.nopCommerce.users.UserLoginPageObject;
+import pageObjects.nopCommerce.users.UserRegisterPO;
 
 public class Level06_Page_Generator_01 extends BaseTest {
     //Declare variables
     private WebDriver driver;
-    private HomePageObject homePage;
-    private RegisterPageObject registerPage;
-    private LoginPageObject loginPage;
-    private CustomerInfoPageObject customerInfoPage;
+    private UserHomePO homePage;
+    private UserRegisterPO registerPage;
+    private UserLoginPageObject loginPage;
+    private UserCustomerInfoPO customerInfoPage;
     String firstName, lastName, emailAddress, companyName, password;
 
     //Pre-condition
@@ -27,7 +27,7 @@ public class Level06_Page_Generator_01 extends BaseTest {
     public void beforeClass(String browserName) {
         driver = getBrowserDriver(browserName);
         //No duoc sinh ra và lam action cua page do
-        homePage = new HomePageObject(driver);
+        homePage = new UserHomePO(driver);
         firstName = "John";
         lastName = "Conor";
         emailAddress = firstName + generateRandomNumb() + "@gmail.com";
@@ -43,7 +43,7 @@ public class Level06_Page_Generator_01 extends BaseTest {
         homePage.openRegisterPage();
 //        Tu homePage qua registerPage
 //        Page do duoc sinh ra de lam action cua page do
-        registerPage = new RegisterPageObject(driver);
+        registerPage = new UserRegisterPO(driver);
         registerPage.clickToMaleRadio();
         registerPage.enterToFirstNameTextBox(firstName);
         registerPage.enterToLastNameTextBox(lastName);
@@ -56,7 +56,7 @@ public class Level06_Page_Generator_01 extends BaseTest {
         registerPage.enterToConfirmPasswordTextBox(password);
         registerPage.clickToRegisterButton();
         Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
-        registerPage.clickToLogoutButton();
+        registerPage.clickToLogoutLink();
     }
 
     @Test
@@ -64,13 +64,13 @@ public class Level06_Page_Generator_01 extends BaseTest {
         homePage.openLoginPage();
 //        Tu registerPage qua loginPage
 //        Page do duoc sinh ra de lam action cua page do
-        loginPage = new LoginPageObject(driver);
+        loginPage = new UserLoginPageObject(driver);
         loginPage.enterToEmailTextBox(emailAddress);
         loginPage.enterToPasswordTextBox(password);
         loginPage.clickToLoginButton();
 //        Tu loginPage qua homePage
 //        Page do duoc sinh ra de lam action cua page do
-        homePage = new HomePageObject(driver);
+        homePage = new UserHomePO(driver);
         Assert.assertTrue(homePage.isMyaccountLinkDisplayed());
 
     }
@@ -80,7 +80,7 @@ public class Level06_Page_Generator_01 extends BaseTest {
         homePage.openCustomerInfoPage();
 //        Tu homePage qua customerInfoPage
 //        Page do duoc sinh ra de lam action cua page do
-        customerInfoPage = new CustomerInfoPageObject(driver);
+        customerInfoPage = new UserCustomerInfoPO(driver);
         Assert.assertTrue(customerInfoPage.isMaleGenderSelected());
         Assert.assertEquals(customerInfoPage.getFirstNameTextboxValue(), firstName);
         Assert.assertEquals(customerInfoPage.getLastNameTextboxValue(), lastName);
