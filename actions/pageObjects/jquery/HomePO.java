@@ -65,10 +65,40 @@ public class HomePO extends BasePage {
     }
 
     public void enterToTextboxByIndex(String rowIndex, String columnName, String valueToSendkey) {
-//        Tu comlumnName lay ra columnIndex
-//        Convert qua dang text(String)
-//        Truyen rowIndex vs columnIndex vào locator de tuong tac và sendkey
+        //        Tu comlumnName lay ra columnIndex
+        int columnIndexNumber = getListElement(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName).size() + 1;
+        //        Convert qua dang text(String)
+        String columnIndex = String.valueOf(columnIndexNumber);
+        //        Truyen rowIndex vs columnIndex vào locator de tuong tac và sendkey
+        sendkeyToElement(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_ROW_AND_COLUMN_INDEX, valueToSendkey, rowIndex, columnIndex);
 
+    }
+
+    public void selectToDropdownByIndex(String rowIndex, String columnName, String valueToSelect) {
+        //        Tu comlumnName lay ra columnIndex
+        int columnIndexNumber = getListElement(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName).size() + 1;
+        //        Convert qua dang text(String)
+        String columnIndex = String.valueOf(columnIndexNumber);
+        selectItemInDropdownList(driver, HomePageUI.DYNAMIC_DROPDOWN_BY_ROW_AND_COLUMN_INDEX, valueToSelect, rowIndex, columnIndex);
+    }
+
+    public void selectToCheckboxByIndex(String rowIndex, String columnName, boolean checkOrUncheck) {
+        //        Tu comlumnName lay ra columnIndex
+        int columnIndexNumber = getListElement(driver, HomePageUI.DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER, columnName).size() + 1;
+        //        Convert qua dang text(String)
+        String columnIndex = String.valueOf(columnIndexNumber);
+        if (checkOrUncheck) {
+            unCheckToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+            sleepInSecond(2);
+        } else {
+            checkToCheckboxRadio(driver, HomePageUI.DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX, rowIndex, columnIndex);
+            sleepInSecond(2);
+        }
+    }
+
+    public void clickToIconByIndex(String rowIndex, String iconName) {
+        waitForElementClickable(driver, HomePageUI.DYNAMIC_ICON_BY_ROW_INDEX, rowIndex, iconName);
+        clickToElement(driver, HomePageUI.DYNAMIC_ICON_BY_ROW_INDEX,rowIndex, iconName);
 
     }
 }

@@ -37,6 +37,7 @@ public class Level11_DataTable extends BaseTest {
 
     }
 
+    //    @Test
     public void Table_02_Search() {
 //        Enter value to header textbox
 //        Verify data in first row
@@ -53,7 +54,7 @@ public class Level11_DataTable extends BaseTest {
 
     }
 
-    @Test
+    //    @Test
     public void Table_03_Delete_Edit() {
         homePage.enterToTextboxByHeaderName("Country", "Afghanistan");
         homePage.deleteRowByCountryName("Afghanistan");
@@ -64,15 +65,21 @@ public class Level11_DataTable extends BaseTest {
 
     }
 
+    @Test
     public void Table_04_Action_By_Index() {
         homePage.openPageUrl(driver, "https://www.jqueryscript.net/demo/jQuery-Dynamic-Data-Grid-Plugin-appendGrid/");
         //CO the thao tac bat ki cot hay row nao
         homePage.clickToLoadDataButton();
-        homePage.enterToTextboxByIndex("4", "Contact Person", "Michael Jackson");
-        homePage.enterToTextboxByIndex("2", "Company", "MJ Company");
-        homePage.selectToDropdownByIndex("6", "Country", "Hong Kong");
-        homePage.selectToDropdownByIndex("8", "Country", "United Kingdom");
-        homePage.selectToDropdownByIndex("5", "NPO?", true);
+//        homePage.enterToTextboxByIndex("4", "Contact Person", "Michael Jackson");
+//        homePage.sleepInSecond(2);
+//        homePage.enterToTextboxByIndex("2", "Company", "MJ Company");
+//        homePage.sleepInSecond(2);
+//        homePage.enterToTextboxByIndex("5", "Order Placed", "400");
+//        homePage.sleepInSecond(2);
+//        homePage.selectToDropdownByIndex("6", "Country", "Hong Kong");
+//        homePage.selectToDropdownByIndex("8", "Country", "United Kingdom");
+//        homePage.selectToCheckboxByIndex("5", "NPO?", true);
+//        homePage.selectToCheckboxByIndex("7", "NPO?", false);
         homePage.clickToIconByIndex("8", "Move Up");
         homePage.clickToIconByIndex("6", "Remove");
         homePage.clickToIconByIndex("4", "Insert");

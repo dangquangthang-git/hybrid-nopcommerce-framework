@@ -107,23 +107,24 @@ public class BasePage {
         getElement(driver, locator).click();
     }
 
-    public void clickToElement(WebDriver driver, String locator, String value) {
-        getElement(driver, castParameter(locator, value)).click();
+    public void clickToElement(WebDriver driver, String locator, String...resParameter) {
+        getElement(driver, castParameter(locator, resParameter)).click();
     }
 
     public void sendkeyToElement(WebDriver driver, String locator, String keyToSend) {
         getElement(driver, locator).sendKeys(keyToSend);
     }
 
-    public void sendkeyToElement(WebDriver driver, String locator, String keyToSend, String restParameter) {
-        getElement(driver, castParameter(locator, restParameter)).sendKeys(keyToSend);
+    public void sendkeyToElement(WebDriver driver, String locator, String valueToSendkey, String... restParameter) {
+        getElement(driver, castParameter(locator, restParameter)).clear();
+        getElement(driver, castParameter(locator, restParameter)).sendKeys(valueToSendkey);
     }
 
     public void selectItemInDropdownList(WebDriver driver, String locator, String textItem) {
         new Select(getElement(driver, locator)).selectByVisibleText(textItem);
     }
 
-    public void selectItemInDropdownList(WebDriver driver, String locator, String textItem, String restParameter) {
+    public void selectItemInDropdownList(WebDriver driver, String locator, String textItem, String... restParameter) {
         new Select(getElement(driver, castParameter(locator, restParameter))).selectByVisibleText(textItem);
     }
 
@@ -192,6 +193,10 @@ public class BasePage {
         return driver.findElements(getByLocator(locator));
     }
 
+    protected List<WebElement> getListElement(WebDriver driver, String locator, String... resParameter) {
+        return driver.findElements(getByLocator(castParameter(locator, resParameter)));
+    }
+
     public int getListElementNumber(WebDriver driver, String locator) {
         return getListElement(driver, locator).size();
     }
@@ -199,6 +204,24 @@ public class BasePage {
     public void checkToCheckboxRadio(WebDriver driver, String locator) {
         if (!getElement(driver, locator).isSelected()) {
             getElement(driver, locator).click();
+        }
+    }
+
+    public void checkToCheckboxRadio(WebDriver driver, String locator, String... resParameter) {
+        if (!getElement(driver, castParameter(locator, resParameter)).isSelected()) {
+            getElement(driver, castParameter(locator, resParameter)).click();
+        }
+    }
+
+    public void unCheckToCheckboxRadio(WebDriver driver, String locator) {
+        if (getElement(driver, locator).isSelected()) {
+            getElement(driver, locator).click();
+        }
+    }
+
+    public void unCheckToCheckboxRadio(WebDriver driver, String locator, String... resParameter) {
+        if (getElement(driver, castParameter(locator, resParameter)).isSelected()) {
+            getElement(driver, castParameter(locator, resParameter)).click();
         }
     }
 

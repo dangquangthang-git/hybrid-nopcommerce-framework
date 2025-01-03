@@ -12,8 +12,10 @@ public class HomePageUI {
     public static final String DYNAMIC_EDIT_BUTTON_BY_COUNTRY_NAME = "xpath=//td[@data-key='country' and text()='%s']/preceding-sibling::td[@class='qgrd-actions']//button[contains(@class,'edit')]";
     public static final String DYNAMIC_EDIT = "xpath=//input[@name='country']";
     public static final String DYNAMIC_SUBMIT = "xpath=//input[@type='submit']";
-    public static final String LOAD_DATA_BUTTON = "xpath=button#load";
-    public static final String DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER = "xpath=//th[text()='Country']/preceding-sibling::th";
-
-
+    public static final String LOAD_DATA_BUTTON = "xpath=//button[@id='load']";
+    public static final String DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER = "xpath=//th[text()='%s']/preceding-sibling::th";
+    public static final String DYNAMIC_TEXTBOX_BY_ROW_AND_COLUMN_INDEX = "xpath=//tr[%s]/td[%s]/input";
+    public static final String DYNAMIC_DROPDOWN_BY_ROW_AND_COLUMN_INDEX = "xpath=//tr[%s]/td[%s]//select";
+    public static final String DYNAMIC_CHECKBOX_BY_ROW_AND_COLUMN_INDEX = "xpath=//tr[%s]/td[%s]//input[@type='checkbox']";
+    public static final String DYNAMIC_ICON_BY_ROW_INDEX = "xpath=//tr[%s]/td//button[starts-with(@title='Insert')]";
 }
