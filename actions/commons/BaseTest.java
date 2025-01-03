@@ -26,8 +26,8 @@ public class BaseTest {
             default:
                 throw new RuntimeException("browser is invalid");
         }
-        driver.get("http://demo.nopcommerce/Admin");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
+        driver.get("http://demo.nopcommerce/");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         return driver;
     }

@@ -12,4 +12,8 @@ public class HomePageUI {
     public static final String DYNAMIC_EDIT_BUTTON_BY_COUNTRY_NAME = "xpath=//td[@data-key='country' and text()='%s']/preceding-sibling::td[@class='qgrd-actions']//button[contains(@class,'edit')]";
     public static final String DYNAMIC_EDIT = "xpath=//input[@name='country']";
     public static final String DYNAMIC_SUBMIT = "xpath=//input[@type='submit']";
+    public static final String LOAD_DATA_BUTTON = "xpath=button#load";
+    public static final String DYNAMIC_PRECEDING_SIBLING_COLUMN_NUMBER = "xpath=//th[text()='Country']/preceding-sibling::th";
+
+
 }

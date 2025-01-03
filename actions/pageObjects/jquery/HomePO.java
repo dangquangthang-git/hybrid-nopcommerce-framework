@@ -41,9 +41,10 @@ public class HomePO extends BasePage {
         clickToElement(driver, HomePageUI.DYNAMIC_DELETE_BUTTON_BY_COUNTRY_NAME, countryName);
         sleepInSecond(3);
     }
-    public void clearSearchBox(String headerName){
-        clickToElement(driver,HomePageUI.DYNAMIC_TEXTBOX_BY_HEADER_NAME,headerName);
-        getElement(driver,HomePageUI.DYNAMIC_TEXTBOX_BY_HEADER_NAME,headerName).clear();
+
+    public void clearSearchBox(String headerName) {
+        clickToElement(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_HEADER_NAME, headerName);
+        getElement(driver, HomePageUI.DYNAMIC_TEXTBOX_BY_HEADER_NAME, headerName).clear();
     }
 
     public void editRowByCountryName(String countryName) {
@@ -51,10 +52,23 @@ public class HomePO extends BasePage {
         clickToElement(driver, HomePageUI.DYNAMIC_EDIT_BUTTON_BY_COUNTRY_NAME, countryName);
         clickToElement(driver, HomePageUI.DYNAMIC_EDIT);
         sleepInSecond(1);
-        getElement(driver,HomePageUI.DYNAMIC_EDIT).clear();
+        getElement(driver, HomePageUI.DYNAMIC_EDIT).clear();
         sleepInSecond(1);
         sendkeyToElement(driver, HomePageUI.DYNAMIC_EDIT, "abcd");
         sleepInSecond(2);
-        clickToElement(driver,HomePageUI.DYNAMIC_SUBMIT);
+        clickToElement(driver, HomePageUI.DYNAMIC_SUBMIT);
+    }
+
+    public void clickToLoadDataButton() {
+        waitForElementClickable(driver, HomePageUI.LOAD_DATA_BUTTON);
+        clickToElement(driver, HomePageUI.LOAD_DATA_BUTTON);
+    }
+
+    public void enterToTextboxByIndex(String rowIndex, String columnName, String valueToSendkey) {
+//        Tu comlumnName lay ra columnIndex
+//        Convert qua dang text(String)
+//        Truyen rowIndex vs columnIndex vào locator de tuong tac và sendkey
+
+
     }
 }
